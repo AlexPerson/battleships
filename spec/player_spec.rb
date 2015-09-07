@@ -1,0 +1,38 @@
+require '~/projects/battleships/lib/player_class.rb'
+
+describe Player do
+	it {is_expected.to respond_to(:place).with(1).argument}
+
+	it 'places a ship on the player\'s board and remembers its position' do
+		subject.place(Ship.new('A1'))
+		expect(subject.ship_array).to include 'A1'
+	end
+
+	it 'reports a miss when no ship in position' do
+		expect(subject.fire('A1')).to eq 'Miss'
+	end
+
+	it 'reports a hit when ship is in position' do
+		ship = Ship.new('A1')
+		subject.place(ship)
+		expect(subject.fire('A1')).to eq 'Hit'
+	end
+
+	it 'records positions of hits' do
+		ship = Ship.new('A1')
+		subject.place(ship)
+		subject.fire('A1')
+		expect(subject.hits_array).to include 'A1'
+	end
+
+	it 'records positions of misses' do
+		subject.fire('B1')
+		expect(subject.miss_array).to include 'B1'
+	end
+
+	it 'ends the game when all of a player\'s ships are sunk' do
+		ship = Ship.new('A1')
+		subject.place(ship)
+		expect { subject.fire('A1') }.to raise_error 'Game over, Player loses.'
+	end
+end
