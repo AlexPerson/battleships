@@ -13,16 +13,20 @@ describe Player do
 	end
 
 	it 'reports a hit when ship is in position' do
-		ship = Ship.new('A1')
-		subject.place(ship)
+		ship1 = Ship.new('A1')
+		ship2 = Ship.new('A2')
+		subject.place(ship1)
+		subject.place(ship2)
 		expect(subject.fire('A1')).to eq 'Hit'
 	end
 
 	it 'records positions of hits' do
-		ship = Ship.new('A1')
-		subject.place(ship)
+		ship1 = Ship.new('A1')
+		ship2 = Ship.new('B2')
+		subject.place(ship1)
+		subject.place(ship2)
 		subject.fire('A1')
-		expect(subject.hits_array).to include 'A1'
+		expect(subject.hits_array).to eq ['A1']
 	end
 
 	it 'records positions of misses' do
