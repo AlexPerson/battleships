@@ -10,17 +10,22 @@ class Player
 		@ship_array << ship.position
 	end
 	def fire target
-		unless @ship_array.empty?
-			if @ship_array.include?(target)
-				@hits_array << target
-				@ship_array.delete[target]
-				"Hit"
-			else
-				@miss_array << target
-				"Miss"
-			end
+		if @ship_array.include?(target)
+			@hits_array << target
+			@ship_array.delete(target)
+			puts "Hit"
+			you_lose
 		else
-			fail 'Game over, Player loses.'
+			@miss_array << target
+			"Miss"
 		end
+	end
+	def you_lose
+		fail 'Game over, Player loses.' if :ship_array.empty?
+		# if ship_array.empty?
+		#  true
+		# else
+		#  "Keep Playing"
+		# end
 	end
 end
