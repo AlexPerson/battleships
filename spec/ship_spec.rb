@@ -1,3 +1,4 @@
+require '~/projects/battleships/lib/player_class.rb'
 require '~/projects/battleships/lib/ship_class.rb'
 describe Ship do
 	let(:player) {double :player}
@@ -9,7 +10,11 @@ describe Ship do
 
 	it 'can be hit' do
 		ship = Ship.new('A1')
-		allow(player).to receive(:fire).with("A1").and_return("Hit")
+		player = Player.new
+		player.place(ship)
+		player.fire('A1')
+		# allow(player).to receive(:place).with(ship)
+		# allow(player).to receive(:fire).with("A1")
 		expect(ship.hits).to eq 1
 	end
 end

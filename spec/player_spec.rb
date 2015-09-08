@@ -5,7 +5,7 @@ describe Player do
 
 	it 'places a ship on the player\'s board and remembers its position' do
 		subject.place(Ship.new('A1'))
-		expect(subject.ship_array).to include 'A1'
+		expect(subject.ship_positions).to include 'A1'
 	end
 
 	it 'reports a miss when no ship in position' do
