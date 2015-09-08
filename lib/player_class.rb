@@ -15,6 +15,7 @@ class Player
 		hit_ship = @ships.find {|ship| ship.position == target}
 		if hit_ship != nil
 			hit_ship.hits += 1
+			@ship_positions.delete(target)
 			@hits_array << target
 			"Hit"
 		else
@@ -33,5 +34,8 @@ class Player
 		# 	@miss_array << target
 		# 	"Miss"
 		# end
+	end
+	def ships_left?
+		@ship_positions.empty?
 	end
 end
