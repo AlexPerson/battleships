@@ -12,11 +12,13 @@ class Player
 		@ship_positions << ship.position
 	end
 	def fire target
-		hit_ship = @ships.find {|ship| ship.position == target}
+		hit_ship = @ships.find {|ship| ship.position.include?(target)}
 		if hit_ship != nil
 			hit_ship.hits += 1
-			@ship_positions.delete(target)
+			@ship_positions.each{|ship| ship.delete(target) if ship.include?(target)}
+			@ship_positions.delete_if{|ship| ship.empty?}
 			@hits_array << target
+			ships_left
 			"Hit"
 		else
 			@miss_array << target
@@ -35,7 +37,7 @@ class Player
 		# 	"Miss"
 		# end
 	end
-	def ships_left?
-		@ship_positions.empty?
+	def ships_left
+		fail 'Game over, Player loses.' if @ship_positions.empty?
 	end
 end

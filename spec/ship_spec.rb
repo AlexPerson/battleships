@@ -10,8 +10,10 @@ describe Ship do
 
 	it 'can be hit' do
 		ship = Ship.new('A1')
+		ship2 = Ship.new('B2')
 		player = Player.new
 		player.place(ship)
+		player.place(ship2)
 		player.fire('A1')
 		# allow(player).to receive(:place).with(ship)
 		# allow(player).to receive(:fire).with("A1")

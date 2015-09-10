@@ -35,8 +35,9 @@ describe Player do
 	end
 
 	it 'ends the game when all of a player\'s ships are sunk' do
-		ship = Ship.new('A1')
+		ship = Ship.new(['A1'])
 		subject.place(ship)
 		expect { subject.fire('A1') }.to raise_error 'Game over, Player loses.'
 	end
+
 end
