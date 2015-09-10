@@ -14,7 +14,7 @@ describe Player do
 
 	it 'reports a hit when ship is in position' do
 		ship1 = Ship.new('A1', 'verticle')
-		ship2 = Ship.new('A2', 'verticle')
+		ship2 = Ship.new('A5', 'verticle')
 		subject.place(ship1)
 		subject.place(ship2)
 		expect(subject.fire('A1')).to eq 'Hit'
@@ -41,6 +41,12 @@ describe Player do
 		expect { subject.fire('A1') }.to raise_error 'Game over, Player loses.'
 	end
 
-	xit 'raises an error when placing a ship in another ship\'s position' 
+	it 'raises an error when placing a ship in another ship\'s position' do
+		ship = Ship.new('A1', 'verticle')
+		ship2 = Ship.new('A1', 'horizontal')
+		subject.place(ship)
+		expect{subject.place(ship2)}.to raise_error 'That position is taken. Choose another.'
+	end
+
 		
 end

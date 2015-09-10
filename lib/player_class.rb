@@ -8,6 +8,9 @@ class Player
 		@miss_array = []
 	end
 	def place ship
+		@ship_positions.flatten.each do |ship_pos|
+			ship.position.each {|coor| fail 'That position is taken. Choose another.' if coor == ship_pos}
+		end
 		@ships << ship
 		@ship_positions << ship.position
 	end

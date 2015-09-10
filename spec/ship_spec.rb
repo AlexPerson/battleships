@@ -1,5 +1,5 @@
 require '~/projects/battleships/lib/player_class.rb'
-require '~/projects/battleships/lib/newship_class.rb'
+require '~/projects/battleships/lib/ship_class.rb'
 describe Ship do
 	let(:player) {double :player}
 
